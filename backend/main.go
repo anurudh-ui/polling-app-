@@ -190,8 +190,9 @@ func main() {
 	a.POST("/polls", s.createPoll)
 	a.GET("/me/polls", s.myPolls)
 	s.startRealtime()
-	log.Println("Pollify API listening on :8080")
-	log.Fatal(r.Run(":8080"))
+	port := env("PORT", "8080")
+	log.Println("Pollify API listening on :" + port)
+	log.Fatal(r.Run(":" + port))
 }
 
 func (s *Server) signup(c *gin.Context) {
